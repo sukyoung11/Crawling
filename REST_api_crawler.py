@@ -12,7 +12,7 @@ def tmdb_movie_crawling():
         response = requests.get(url)
         datas = response.json()
         for data in datas['results']:
-            # 불완전한 데이터 필터링
+            # 불완전한 데이터 필터링, 데이터 빈 값 거르기
             if ('overview' in data) and ('genre_ids' in data) and ('poster_path' in data) and ('adult' in data) and ('release_date' in data) and ('original_title' in data) and ('original_language' in data) and ('title' in data) and ('popularity' in data) and ('vote_count' in data) and ('vote_average' in data):
                 if len(data['overview']) != 0 and len(data['genre_ids']) != 0 and len(data['poster_path']) != 0 and len(data['release_date']) == 10 and len(data['original_title']) != 0 and len(data['original_language']) != 0 and len(data['title']) != 0 and data['popularity'] != 0 and data['vote_count'] != 0 and data['vote_average'] != 0:
                     result.append({'model': 'movies.movie',
